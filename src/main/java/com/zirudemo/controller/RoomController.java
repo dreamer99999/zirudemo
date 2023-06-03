@@ -44,4 +44,25 @@ public class RoomController {
         session.setAttribute("room",rooms);
         return "rooms.jsp";
     }
+
+    @RequestMapping("/queryByHouseType")
+    public String queryByHouseType(String houseType,HttpSession session){
+        List<Rooms> rooms = roomService.queryByHouseType(houseType);
+        session.setAttribute("rooms",rooms);
+        return "rent.jsp";
+    }
+
+    @RequestMapping("/queryByAfforest")
+    public String queryByAfforest(String afforest,HttpSession session){
+        List<Rooms> rooms = roomService.queryByAfforest(afforest);
+        session.setAttribute("rooms",rooms);
+        return "rent.jsp";
+    }
+
+    @RequestMapping("/queryByPrice")
+    public String queryByPrice(int minPrice,int maxPrice,HttpSession session){
+        List<Rooms> rooms = roomService.queryByPrice(minPrice,maxPrice);
+        session.setAttribute("rooms",rooms);
+        return "rent.jsp";
+    }
 }

@@ -56,4 +56,16 @@
     <select id="queryById" resultMap="RoomMap">
         select * from rooms where roomId = #{id}
     </select>
+    
+    <select id="queryByHouseType" resultMap="RoomMap">
+        select * from rooms where houseType = #{houseType}
+    </select>
+
+    <select id="queryByAfforest" resultMap="RoomMap">
+        select * from rooms where afforest = #{afforest}
+    </select>
+
+    <select id="queryByPrice" resultMap="RoomMap">
+        select * from rooms where roomPrice between #{minPrice} and #{maxPrice}
+    </select>
 </mapper>

@@ -25,4 +25,22 @@ public class RoomServiceImpl implements RoomService {
         Rooms rooms = roomsDao.queryById(id);
         return rooms;
     }
+
+    @Override
+    public List<Rooms> queryByHouseType(String houseType) {
+        List<Rooms> rooms = roomsDao.queryByHouseType(houseType);
+        return rooms;
+    }
+
+    @Override
+    public List<Rooms> queryByAfforest(String afforest) {
+        List<Rooms> rooms = roomsDao.queryByAfforest(afforest);
+        return rooms;
+    }
+
+    @Override
+    public List<Rooms> queryByPrice(int minPrice, int maxPrice) {
+        List<Rooms> rooms = roomsDao.queryByPrice(minPrice,maxPrice);
+        return rooms;
+    }
 }
