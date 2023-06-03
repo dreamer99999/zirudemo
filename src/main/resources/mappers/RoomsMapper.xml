@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zirudemo.dao.RoomsDao">
+    <resultMap id="RoomMap" type="com.zirudemo.pojo.Rooms">
+        <id property="roomId" column="roomId"></id>
+        <result property="roomName" column="roomName"></result>
+        <result property="roomArea" column="roomArea"></result>
+        <result property="roomNumber" column="roomNumber"></result>
+        <result property="roomNumbers" column="roomNumbers"></result>
+        <result property="houseType" column="houseType"></result>
+        <result property="floor" column="floor"></result>
+        <result property="roomLocation" column="roomLocation"></result>
+        <result property="elevator" column="elevator"></result>
+        <result property="completion" column="completion"></result>
+        <result property="heatingType" column="heatingType"></result>
+        <result property="afforest" column="afforest"></result>
+        <result property="areaLocation" column="areaLocation"></result>
+        <result property="subway" column="subway"></result>
+        <result property="tenementName" column="tenementName"></result>
+        <result property="roomPrice" column="roomPrice"></result>
+        <result property="characterName" column="characterName"></result>
+        <result property="statusName" column="statusName"></result>
+        <result property="specialOffer" column="specialOffer"></result>
+        <result property="roomTime" column="roomTime"></result>
+        <result property="videoURL" column="videoURL"></result>
+        <result property="roomPic" column="roomPic"></result>
+        <result property="uid" column="uid"></result>
+        <collection property="roomTitleList" ofType="com.zirudemo.pojo.RoomTitle" column="roomId" select="selectTitle">
+        </collection>
+        <collection property="roomPictures" ofType="com.zirudemo.pojo.RoomPicture" column="roomId" select="selectPicture">
+
+        </collection>
+    </resultMap>
+
+    <select id="selectTitle" resultType="com.zirudemo.pojo.RoomTitle">
+        select * from  roomtitle where roomId = #{roomId}
+
+    </select>
+    <select id="selectPicture" resultType="com.zirudemo.pojo.RoomPicture">
+        select * from roompicture where roomId = #{roomId}
+    </select>
+
+    <select id="queryAll" resultMap="RoomMap">
+        select rooms.roomId ,roomPic,tenementName,roomName,orientationName,roomArea,
+        floor,roomLocation,roomPrice
+        from rooms
+        <where>
+            <if test="tj!=null and tj!=''">
+                roomName  like concat('%',#{tj},'%')
+            </if>
+        </where>
+        order by  ${rule}
+    </select>
+
+    <select id="queryById" resultMap="RoomMap">
+        select * from rooms where roomId = #{id}
+    </select>
+</mapper>

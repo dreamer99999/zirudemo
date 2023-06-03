@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zirudemo.dao.TenantDao">
+    <select id="queryByPhoneAndPwd" resultType="com.zirudemo.pojo.Tenant">
+        select * from tenant where tPhone = #{tPhone} and tPassword = #{tPassword}
+    </select>
+
+    <insert id="Register" parameterType="com.zirudemo.pojo.Tenant">
+        insert into tenant (tNickname,tPhone,tPassword)values(#{tNickname},#{tPhone},#{tPassword})
+    </insert>
+
+    <select id="selectByPhone" resultType="com.zirudemo.pojo.Tenant">
+        select *  from tenant where tPhone = #{tPhone}
+    </select>
+</mapper>
